@@ -5,11 +5,13 @@ Ruby program to parse RSS channels and send to twitter
 REQUIREMENTS 
 
 - To use this program you've to use a minimum version of Ruby 1.9.3 and install the oauth gem:
+
 	$ sudo gem install oauth
 	
 CONFIGURATION
 
 - Put the project folder under any location on the system. Ex:
+
 	$ cp -p rss2twitter/ /usr/local/bin/
 	
 - You need to register an application with your twitter account and create a consumer key, consumer secret, an access token and access secret. For more information visit: https://dev.twitter.com/apps
