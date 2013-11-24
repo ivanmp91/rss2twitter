@@ -1,0 +1,23 @@
+{
+	
+	"cache_file":"/var/cache/rss2twitter/update.bin",
+	"log_file": "/var/log/rss2twitter.log",
+	"consumer_key":"CHANGE_ME",
+	"consumer_secret":"CHANGE_ME",
+	"access_token":"CHANGE_ME",
+	"access_token_secret":"CHANGE_ME",
+	"twitter_api_uri":"https://api.twitter.com/1.1",
+	"channels":[
+		{
+			"title":"PlanetaSysadmin",
+			"url":"http://planetasysadmin.com/rss20.xml",
+			"hash_tag":"sysadmin"
+		},
+		{
+			"title":"opentodo.net",
+			"url":"http://opentodo.net/feed",
+			"hash_tag":"opentodo"
+		}
+		
+	]
+}
