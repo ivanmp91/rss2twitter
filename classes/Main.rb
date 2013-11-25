@@ -24,7 +24,7 @@ class Main
 	def initialize 
 		@urls=Hash.new
 		@tweets=[]
-		@time=get_timestamp
+		get_timestamp
 		@@parser=FeedParse.new(@time)
 		set_timestamp
 	end
@@ -59,15 +59,14 @@ class Main
   				Marshal.dump(@time,file)
 			end
 		end
-		return @time
 	end
 
 	#Update the binary file with the current time
 	def set_timestamp
 		File.truncate(@@properties[:cache_file].to_s,0)
-		time= Time.now.utc.iso8601
+		time_now= Time.now.utc.iso8601
 		File.open(@@properties[:cache_file].to_s, 'wb' ) do |file|
-  			Marshal.dump(time,file)
+  			Marshal.dump(time_now,file)
 		end
 	end	
 end
