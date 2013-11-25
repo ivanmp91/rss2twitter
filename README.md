@@ -22,7 +22,7 @@ CONFIGURATION
 
 - Setup a cron task to run the program. The script you've to run is $LOCATION/rss2twitter/bin/rss2twitter.rb
 
-*/30 * * * * root cd /usr/local/bin/rss2twitter/bin/ && ./rss2twitter.rb 2>&1 >> /var/log/rss2twitter.log
+	*/30 * * * * root cd /usr/local/bin/rss2twitter/bin/ && ./rss2twitter.rb  >> /var/log/rss2twitter.log 2>&1
 
 CONTACT
 
