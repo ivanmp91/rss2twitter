@@ -11,7 +11,7 @@ class FeedParse
 	
 	def initialize(last_update)
 		@tweets=[]
-		@last_update=DateTime.parse(last_update)
+		@last_update=DateTime.parse(last_update).iso8601(9)
 	end
 
 	#parse all the url channels, if the pubDate is greater than the date from the last check update
@@ -22,8 +22,8 @@ class FeedParse
 			open(properties[:url]) do |rss|
 				feed=RSS::Parser.parse(rss)
 				feed.items.each do |item|
-					date=DateTime.parse("#{item.pubDate}")
-					if date >= @last_update then
+					date=DateTime.parse("#{item.pubDate}").iso8601(9)
+					if date >= @last_update
 						item_url=item.link
 						short_url=SHORT_URL.short(item_url)
 						tweet=Tweet.new(short_url,item.title)

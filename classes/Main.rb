@@ -12,7 +12,7 @@ require '../classes/Tweet'
 class Main
 
 	@@properties = {
-		cache_file: READ_CONFIG.get_property("cache_file"),
+		cache_file:  READ_CONFIG.get_property("cache_file"),
 		consumer_key: READ_CONFIG.get_property("consumer_key"),
 		consumer_secret: READ_CONFIG.get_property("consumer_secret"),
 		access_token: READ_CONFIG.get_property("access_token"),
@@ -24,9 +24,8 @@ class Main
 	def initialize 
 		@urls=Hash.new
 		@tweets=[]
-		@time=get_timestamp
+		get_timestamp
 		@@parser=FeedParse.new(@time)
-		set_timestamp
 	end
 	#Call to parse the rss for all the url channels and convert to tweet messages
 	def get_tweets
@@ -44,6 +43,7 @@ class Main
 		SEND_TWEET.set_properties(@@properties)
 		tweet_log=[]
 		@tweets.each {|tweet| tweet_log.push(SEND_TWEET.send(tweet.to_s))} if @tweets.count > 0
+		set_timestamp if @tweets.count > 0
 		return tweet_log
 	end
 
@@ -59,15 +59,14 @@ class Main
   				Marshal.dump(@time,file)
 			end
 		end
-		return @time
 	end
 
 	#Update the binary file with the current time
 	def set_timestamp
 		File.truncate(@@properties[:cache_file].to_s,0)
-		time= Time.now.utc.iso8601
+		time_now= Time.now.utc.iso8601
 		File.open(@@properties[:cache_file].to_s, 'wb' ) do |file|
-  			Marshal.dump(time,file)
+  			Marshal.dump(time_now,file)
 		end
 	end	
 end

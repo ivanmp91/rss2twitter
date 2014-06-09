@@ -17,9 +17,7 @@ module SEND_TWEET
 	#send twitter message
 	def self.send(message)
 		request = Net::HTTP::Post.new @twitter_url.request_uri
-		request.set_form_data(
-			"status"=> "#{message}",
-		)
+		request.set_form_data("status"=> "#{message}")
 		return self.http_request(request)
 	end
 
